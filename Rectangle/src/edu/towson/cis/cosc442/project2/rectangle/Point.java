@@ -15,7 +15,15 @@ public class Point {
 	 * @param y the y
 	 */
 	Point(Double x, Double y) {
-		this.x = y;
-		this.y = y;
+		setX(x);
+		setY(y);
+	}
+	public void setX(Double point) {
+		
+		x = point;
+	}
+	public void setY(Double point) {
+		
+		y = point;
 	}
 }
