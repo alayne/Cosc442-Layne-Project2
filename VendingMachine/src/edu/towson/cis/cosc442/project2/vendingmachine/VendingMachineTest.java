@@ -117,7 +117,7 @@ public class VendingMachineTest {
 		
 	}
 	
-	@Test // Tests adding a negativ 
+	@Test // Tests adding a negative amount to the balance, should throw error if correct
 	public void insertNegativeAmountTest() {
 		
 		boolean caught = false;
@@ -131,6 +131,85 @@ public class VendingMachineTest {
 		
 		assertTrue(caught);
 		
+		
+	}
+	
+	@Test // Test getBalance method after adding money multiple times. 
+	public void testGetBalance() {
+		
+		
+		VM.insertMoney(10.00);
+		VM.insertMoney(5.00);
+		
+		assertEquals(15.00, VM.getBalance(), 0);
+		
+		
+	}
+	
+	@Test // Test to make sure after purchasing an item that item is removed
+		  // Adds item and balance, purchases item, then tries to getItem 
+	public void testMakePurchaseItemRemoved() {
+		
+		boolean caught = false;
+		VM.addItem(VMI, "A");
+		
+		VM.insertMoney(5.00);
+		
+		try {
+			VM.makePurchase("A");
+			VM.getItem("A");
+		}
+		catch (VendingMachineException e) {
+			caught = true;
+		}
+		
+		assertTrue(caught);
+		
+	}
+	
+	@Test // Tests that the balance is updated after purchasing an item. 
+	public void makePurchaseBalanceTest() {
+		VM.addItem(VMI, "A"); // Price of item A is 1.00
+		
+		VM.insertMoney(5.00);
+		
+		VM.makePurchase("A");
+		
+		assertEquals(4.00, VM.getBalance(), 0);
+		
+	}
+	
+	@Test // Testing to see if makePurchase will fail if balance is not high enough
+		  // Add less than is required in balance, add item, try to make purchase
+	public void makePurchaseBalanceLowTest() {
+		
+		
+		VM.addItem(VMI, "A");
+		
+		VM.insertMoney(.50);
+		
+		boolean failed = VM.makePurchase("A");
+		assertFalse(failed);
+		
+		
+	}
+	
+	@Test //Testing that the return change method returns the correct amount of change
+	public void getCorrectChangeTest() {
+		
+		VM.insertMoney(5.00);
+		assertEquals(5.00, VM.returnChange(), 0);
+		
+	}
+	
+	@Test // Testing that the balance gets reset to 0 after returnChange is called
+	public void balanceSetZeroTest() {
+		
+		VM.insertMoney(6.00);
+		
+		VM.returnChange();
+		
+		assertEquals(0.00, VM.getBalance(), 0 );
 		
 	}
 	

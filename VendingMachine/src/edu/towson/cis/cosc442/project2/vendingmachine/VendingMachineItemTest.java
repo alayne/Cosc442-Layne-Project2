@@ -21,18 +21,18 @@ public class VendingMachineItemTest {
 	
 	
 	
-	@Test //Testing Normal input into the Vending Machine contructor
+	@Test //Testing Normal (String, Double >= 0) input into the Vending Machine constructor.
 	public void constructorNormalInput() {
 		
 		VMI = new VendingMachineItem("Candy", 1.00);
 		
-		assertEquals(1.00, VMI.getPrice(), 0); // 1 is expected, VMI.getPrice is actual, 0 is the delta or how close they need to be (0 must have exact match)
+		assertEquals(1.00, VMI.getPrice(), 0); // 1 is expected, VMI.getPrice is actual, 0 is the delta or how close they need to be (0 must have exact match).
 		
 		assertTrue((VMI.getName().equals("Candy")));	
 		
 	}
 	
-	@Test //Testing bad input to constructor
+	@Test //Testing bad (negative price) input to constructor.
 	public void constructorBadInput() {
 		
 		boolean caught = false;
@@ -40,14 +40,14 @@ public class VendingMachineItemTest {
 		try {
 			VMI = new VendingMachineItem("Chips", -1);
 		} catch (VendingMachineException exception) {
-			caught = true; // If exception is caught variable gets set to true
+			caught = true; // If exception is caught variable gets set to true.
 		}
 		
 		assertTrue(caught);
 				
 	}
 	
-	@Test
+	@Test // Testing to make sure name variable is set correctly.
 	public void getNameTest() {
 		
 		VMI = new VendingMachineItem("Fritos", 2.00);
@@ -56,7 +56,7 @@ public class VendingMachineItemTest {
 
 	}
 	
-	@Test
+	@Test // Testing to make sure the price variable is set correctly. 
 	public void getPriceTest() {
 		
 		VMI = new VendingMachineItem("Twix", 1.75);

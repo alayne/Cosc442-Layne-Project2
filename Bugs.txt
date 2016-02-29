@@ -1,0 +1,3 @@
+- In VendingMachine class the method getItem had no way of handling if an invalid code was passed to it. Added code to throw exception if invalid code got passed to it. This actually ended up fixing potential bugs for other methods as well. 
+
+- Other than that really didn't find any more bugs. I don't know if I missed a bunch of things or did my testing incorrectly but everything seems to work. I might just not be thinking creatively enough or I'm just paranoid becuase I only found 1 bug.  
