@@ -117,7 +117,14 @@ public class VendingMachine {
 	 */
 	protected VendingMachineItem getItem(String code) throws VendingMachineException {
 		int slotIndex = getSlotIndex(code);
-		return itemArray[slotIndex];
+		
+		// Below is new code to handle if slot requested is empty
+		//Altered code to check if slot is filled before returning item as to not return a null value
+		VendingMachineItem item = itemArray[slotIndex];
+		if ( item == null) {
+			throw new VendingMachineException(SLOT_MESSAGE + code + IS_EMPTY_MESSAGE);
+		}
+		return item;
 	}
 	
 	/**
